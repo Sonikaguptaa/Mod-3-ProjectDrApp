@@ -16,9 +16,11 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 
+// routes
+app.use("/api/v1/user", require("./routes/userRoutes"));
+
 app.listen(PORT, () => {
   console.log(
-    `App listening at http://localhost:${PORT} ${process.env.MONGO_URL}`.bgBlue
-      .white
+    `App listening at http://localhost:${PORT} ${process.env.MONGO_URL}`
   );
 });

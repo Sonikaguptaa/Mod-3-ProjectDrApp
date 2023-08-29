@@ -1,103 +1,57 @@
 import React from 'react';
-import { useState } from 'react';
-import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
+import { Form, Input } from 'antd'
+import { Link } from 'react-router-dom'
+
+const Register = () => {
 
 
-let emptyForm = {
-  username: '',
-  password: '',
-  email: ''
-}
-
-function Register({ setUser }) {
-
-  const navigate = useNavigate()
-
-  let [form, setForm] = useState(emptyForm)
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+  // form handler
+  const onfinishHandler = (values) => {
+    console.log(values)
   }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    try {
-      const authResponse = await axios.post('/auth/register', form)
-      const token = authResponse.data.token
-
-      if (!token) {
-        setForm(emptyForm)
-        return
-      }
-
-      localStorage.setItem("token", token)
-
-      const userResponse = await axios.get('/api/users', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-
-      setUser(userResponse.data)
-
-      navigate('/posts')
-
-    } catch (err) {
-
-      console.log(err)
-      alert(err.response.data.error)
-
-    }
-  }
-
   return (
-    <div className="mx-auto flex w-full max-w-sm flex-col gap-6">
-      <div className="flex flex-col items-center">
-        <h1 className="text-3xl font-semibold" >Register</h1>
-      </div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
-          <br />
-          <input
-            type="text"
-            id="username"
-            name="username"
-            onChange={handleChange}
-            value={form.username}
-          />
-          <br /><br />
-          <label htmlFor="email">Email:</label>
-          <br />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            onChange={handleChange}
-            value={form.email}
-          />
-          <br /><br />
-          <label htmlFor="password">Password:</label>
-          <br />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={handleChange}
-            value={form.password}
-          />
-          <br /><br />
-          <div className="flex justify-center">
-            <button className="bg-sandy-yellow hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded">
-              Submit
-            </button>
-          </div>
+    <div name='register' className='w-full h-fit bg-gradient-to-b from-gray-800  text-white'>
+      <div className='max-w-screen-md pt-3 mx-auto flex flex-col justify-center '>
 
-        </form>
-      </div></div>
-  );
+
+        <div >
+          <p className='text-3xl font-bold  border-gray-500 text-center'>Register</p>
+
+        </div>
+        <div className='flex justify-center items-center'>
+          <Form layout="vertical" onFinish={onfinishHandler} className='flex flex-col w-full md:w-1/2 m-3 p-3  border-4 rounded-md text-gray '>
+
+
+            <Form.Item label='Name' name='name' >
+
+              <Input type='text' required />
+            </Form.Item>
+
+            <Form.Item label='Email' name='email'>
+              <Input type='email' required />
+            </Form.Item>
+
+            <Form.Item label='Password' name='password'>
+              <Input type='password' required className="w-full border p-2 rounded mb-4" />
+            </Form.Item>
+            <Link to='/login' className='m-2'>Already User Click here</Link>
+
+            <button className="bg-gray-300 text-gray-900 px-4 py-2 rounded hover:bg-gray-500 "
+              type="submit">Register</button>
+
+
+
+
+
+
+          </Form>
+
+        </div>
+      </div>
+    </div >
+
+  )
 }
+
 
 export default Register;

@@ -10,7 +10,7 @@ function App() {
 
   return (
 
-    <div className='App bg-slate-200 font-bold text-cyan-400'>
+    <div className='App'>
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login />} />
