@@ -1,30 +1,51 @@
-import { useState } from 'react'
-import { Routes, Route, } from 'react-router-dom'
-import './App.css'
-import HomePage from './pages/HomePage'
-import Register from './pages/Register'
-import Login from './pages/Login'
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { useSelector } from "react-redux";
+
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoginRoute from "./components/loginRoute";
+import Spinner from "./components/Spinner";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const { loading } = useSelector((state) => state.alerts);
   return (
+    <>
+      {loading && <Spinner />}
 
-    <div className='App'>
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          }
+        />
 
+        <Route
+          path="/register"
+          element={
+            <LoginRoute>
+              <Register />
+            </LoginRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <LoginRoute>
+              <Login />
+            </LoginRoute>
+          }
+        />
 
       </Routes>
 
 
-    </div>
-
-
-
-  )
+    </>
+  );
 }
 
-export default App
+export default App;
