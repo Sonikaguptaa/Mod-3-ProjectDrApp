@@ -3,10 +3,10 @@ import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { useSelector } from "react-redux";
-
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoginRoute from "./components/LoginRoute";
 import Spinner from "./components/Spinner";
+import Doctors from "./pages/Doctors";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -15,8 +15,10 @@ function App() {
     <>
       {loading && <Spinner />}
       <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<LoginRoute>
+          <Register /> </LoginRoute>} />
+        <Route path="/login" element={<LoginRoute>
+          <Login />  </LoginRoute>} />
         <Route
           path="/"
           element={
@@ -25,6 +27,17 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/doctor"
+          element={
+            <ProtectedRoute>
+              <Doctors />
+            </ProtectedRoute>
+          }
+        />
+
+
       </Routes>
     </>
   );
