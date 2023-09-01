@@ -5,16 +5,18 @@ import Register from "./pages/Register";
 import { useSelector } from "react-redux";
 
 import ProtectedRoute from "./components/ProtectedRoute";
-import LoginRoute from "./components/loginRoute";
+import LoginRoute from "./components/LoginRoute";
 import Spinner from "./components/Spinner";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
+
   return (
     <>
       {loading && <Spinner />}
-
       <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/"
           element={
@@ -23,27 +25,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        <Route
-          path="/register"
-          element={
-            <LoginRoute>
-              <Register />
-            </LoginRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <LoginRoute>
-              <Login />
-            </LoginRoute>
-          }
-        />
-
       </Routes>
-
-
     </>
   );
 }

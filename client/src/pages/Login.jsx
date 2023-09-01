@@ -17,6 +17,7 @@ const Login = () => {
       dispatch(showLoading());
 
       const res = await axios.post('/api/user/login', values)
+      // window.location.reload();
 
       dispatch(hideLoading())
 

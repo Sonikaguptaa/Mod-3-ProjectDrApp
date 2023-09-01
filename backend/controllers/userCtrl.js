@@ -47,7 +47,7 @@ const loginController = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
+      expiresIn: "1h",
     });
     res.status(200).send({ message: "Login Successful", success: true, token });
   } catch (error) {
@@ -56,9 +56,17 @@ const loginController = async (req, res) => {
   }
 };
 
+//auth Controller
 const authController = async (req, res) => {
   try {
-    const user = await userModel.findById({ _id: req.body.userId });
+    if (!req.body.userId) {
+      return res.status(400).send({
+        message: "userId not provided",
+        success: false,
+      });
+    }
+
+    const user = await userModel.findById(req.body.userId);
     user.password = undefined;
     if (!user) {
       return res.status(200).send({
@@ -68,10 +76,7 @@ const authController = async (req, res) => {
     } else {
       res.status(200).send({
         success: true,
-        data: {
-          name: user.name,
-          email: user.email,
-        },
+        data: user,
       });
     }
   } catch (error) {
