@@ -1,40 +1,53 @@
-const doctors = [
-  {
-    firstName: "John",
-    lastName: "Doe",
-    specialization: "Cardiologist",
-    experience: 10,
-    contactNumber: "123-456-7890",
-    address: "123 Main Street",
-    isAvailable: true,
-  },
-  {
-    firstName: "Jane",
-    lastName: "Smith",
-    specialization: "Pediatrician",
-    experience: 8,
-    contactNumber: "987-654-3210",
-    address: "456 Elm Avenue",
-    isAvailable: false,
-  },
-  {
-    firstName: "Michael",
-    lastName: "Johnson",
-    specialization: "Dermatologist",
-    experience: 15,
-    contactNumber: "555-123-4567",
-    address: "789 Oak Road",
-    isAvailable: true,
-  },
-  {
-    firstName: "Emily",
-    lastName: "Williams",
-    specialization: "Gynecologist",
-    experience: 12,
-    contactNumber: "111-222-3333",
-    address: "234 Maple Lane",
-    isAvailable: false,
-  },
-];
+const mongoose = require("mongoose");
 
-module.exports = doctors;
+const doctorSchema = new mongoose.Schema(
+  {
+    firstName: {
+      type: String,
+      required: [true, "first name is required"],
+    },
+
+    lastName: {
+      type: String,
+      required: [true, "last name is required"],
+    },
+
+    phone: {
+      type: String,
+      required: [true, "phone no is required"],
+    },
+
+    email: {
+      type: String,
+      required: [true, "email is required"],
+    },
+
+    website: {
+      type: String,
+    },
+
+    address: {
+      type: String,
+      required: [true, "address is required"],
+    },
+
+    specialization: {
+      type: String,
+      required: [true, " specialization is required"],
+    },
+
+    experience: {
+      type: String,
+      required: [true, " experience is required"],
+    },
+
+    isAvailable: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
+
+const doctorModel = mongoose.model("users", doctorSchema);
+module.exports = doctorModel;
