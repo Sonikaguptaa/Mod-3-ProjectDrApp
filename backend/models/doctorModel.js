@@ -41,13 +41,18 @@ const doctorSchema = new mongoose.Schema(
       required: [true, " experience is required"],
     },
 
-    isAvailable: {
-      type: Boolean,
-      default: false,
+    status: {
+      type: String,
+      default: "pending",
+    },
+
+    timings: {
+      type: Object,
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-const doctorModel = mongoose.model("users", doctorSchema);
+const doctorModel = mongoose.model("doctors", doctorSchema);
 module.exports = doctorModel;
