@@ -122,9 +122,58 @@ const applyDoctorController = async (req, res) => {
   }
 };
 
+// notification ctrl
+const getAllNotificationController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ _id: req.body.userId });
+    const seenNotification = user.seenNotification;
+    const notification = user.notification;
+    seenNotification.push(...notification);
+    user.notification = [];
+    user.seenNotification = notification;
+    const updatedUser = await user.save();
+    res.status(200).send({
+      success: true,
+      message: "all notification marked as read",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error in notification",
+      success: false,
+    });
+  }
+};
+
+// delete Notification
+const DeleteAllNotificationController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ _id: req.body.userId });
+    user.notification = [];
+    user.seenNotification = [];
+    const updatedUser = await user.save();
+    updatedUser.password = undefined;
+    res.status(200).send({
+      success: true,
+      message: "Notification Deleted successfully",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Unable to delete all notification",
+      error,
+    });
+  }
+};
+
 module.exports = {
   registerController,
   loginController,
   authController,
   applyDoctorController,
+  getAllNotificationController,
+  DeleteAllNotificationController,
 };

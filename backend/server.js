@@ -18,6 +18,7 @@ app.use(cors());
 
 // routes
 app.use("/api/user", require("./routes/userRoutes"));
+app.use("/api/admin", require("./routes/adminRoutes"));
 
 app.listen(PORT, () => {
   console.log(
