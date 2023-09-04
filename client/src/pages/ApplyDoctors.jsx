@@ -31,7 +31,8 @@ const ApplyDoctors = () => {
       })
       dispatch(hideLoading())
       if (res.data.success) {
-        message.success(res.data.success)
+
+        message.success(res.data.message)
         navigate('/')
 
       } else {
@@ -49,9 +50,9 @@ const ApplyDoctors = () => {
   }
   return (
     <Layout>
-      <h1 className='text-center'> Doctors </h1>
+      <h1 className='text-center'>Apply Doctors </h1>
       <Form layout='vertical' onFinish={handleFinish} className='m-3'>
-        <h5>Personel Details :</h5>
+        <h4>Personel Details :</h4>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
             <Form.Item label="First Name"
@@ -81,7 +82,7 @@ const ApplyDoctors = () => {
               rules={[{ required: true }]}>
 
 
-              <Input type="text" placeholder="  Phone no" />
+              <Input type="text" placeholder=" Contact no" />
 
             </Form.Item>
           </Col>

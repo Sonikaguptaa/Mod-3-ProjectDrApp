@@ -1,67 +1,96 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/Layout'
 import axios from 'axios'
-import { Table } from 'antd'
+import { Table, message } from 'antd'
 
 const Doctors = () => {
-
   const [doctors, setDoctors] = useState([])
 
-  //get users
+  // Get doctors
   const getDoctors = async () => {
     try {
-      const res = await axios.get('/api/admin//getAllDoctors', {
+      const res = await axios.get('/api/admin/getAllDoctors', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       if (res.data.success) {
-        setDoctors(res.data.data)
-
+        setDoctors(res.data.data);
       }
     } catch (error) {
       console.log(error);
-
     }
   }
 
-  useEffect(() => {
-    getDoctors()
-  }, [])
+  // Handle account status
+  const handleAccountStatus = async (record, status) => {
+    console.log(record)
+    try {
+      // const res = await axios.post('/api/admin/changeAccountStatus', { doctorId: record._id, userId: record.userId, status: status }, 
+      const res = await axios.post(
+        "/api/admin/changeAccountStatus",
+        { doctorId: record._id, userId: record.userId, status: status },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+      if (res.data.success) {
+        message.success(res.data.message);
+        window.location.reload()
+      }
+    } catch (error) {
+      message.error("Error in Handle Account");
+    }
+  };
 
-  const colums = [
+  useEffect(() => {
+    getDoctors();
+  }, []);
+
+  const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
       render: (text, record) => (
         <span>{record.firstName} {record.lastName}</span>
-      )
+      ),
     },
     {
       title: 'Status',
-      dataIndex: 'status'
+      dataIndex: 'status',
     },
     {
       title: 'Phone',
-      dataIndex: 'phone'
+      dataIndex: 'phone',
     },
     {
       title: 'Actions',
       dataIndex: 'actions',
-      render: (text, record) => (
-        <div className='flex'>
-          {record.status === 'pending' ? <button className=''>Approve</button> : <button className=''>Reject</button>}
-        </div>
-      )
 
-    }
-  ]
+      render: (text, record) => (
+        <div className="flex">
+          {record.status === "pending" ? (
+            <button
+              className="btn btn-success"
+              onClick={() => handleAccountStatus(record, "approved")}
+            >
+              Approve
+            </button>
+          ) : (
+            <button className="btn btn-danger"  >Reject</button>
+          )}
+        </div>
+      ),
+    },
+  ];
+
   return (
     <Layout>
-      <h1>Doctors List </h1>
-      <Table columns={colums} dataSource={doctors} />
+      <h1>Doctors List</h1>
+      <Table columns={columns} dataSource={doctors} />
     </Layout>
   )
 }
 
-export default Doctors
+export default Doctors;

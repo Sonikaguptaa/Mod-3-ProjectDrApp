@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { adminMenu, userMenu } from "../data/Data";
+import { adminMenu, userMenu } from "../data/data";
 import { useSelector } from "react-redux";
 import { message, Badge } from "antd";
 import { useDispatch } from "react-redux"
@@ -25,8 +25,31 @@ const Layout = ({ children }) => {
 
   }
 
+  // ===============Doctor Menu================
+
+  const doctorMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: " fa-solid fa-house",
+    },
+    {
+      name: "Appoinments",
+      path: "/appointments",
+      icon: "fa-solid fa-list",
+    },
+    {
+      name: "Profile",
+      path: `/doctor/profile/${user?._id}`,
+      icon: "fa-solid fa-user",
+    },
+  ];
+
+  //=================Doctor Menu================
+
+
   // rendering menu list
-  const SidebarMenu = user?.isAdmin ? adminMenu : userMenu
+  const SidebarMenu = user?.isAdmin ? adminMenu : user?.isDoctor ? doctorMenu : userMenu
   return (
     <>
 

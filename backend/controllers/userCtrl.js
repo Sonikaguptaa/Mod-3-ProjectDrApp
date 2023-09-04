@@ -60,14 +60,14 @@ const loginController = async (req, res) => {
 //auth Controller
 const authController = async (req, res) => {
   try {
-    if (!req.body.userId) {
-      return res.status(400).send({
-        message: "userId not provided",
-        success: false,
-      });
-    }
+    // if (!req.body.userId) {
+    //   return res.status(400).send({
+    //     message: "userId not provided",
+    //     success: false,
+    //   });
+    // }
 
-    const user = await userModel.findById(req.body.userId);
+    const user = await userModel.findById({ _id: req.body.userId });
     user.password = undefined;
     if (!user) {
       return res.status(200).send({
@@ -101,7 +101,7 @@ const applyDoctorController = async (req, res) => {
     notification.push({
       type: `apply-doctor-request`,
       message: ` ${newDoctor.firstName} ${newDoctor.lastName} Has Appied for Doctor Account`,
-      Data: {
+      data: {
         doctorId: newDoctor._id,
         name: newDoctor.firstName + " " + newDoctor.lastName,
         onClickPath: "/admin/doctors",
@@ -169,6 +169,25 @@ const DeleteAllNotificationController = async (req, res) => {
   }
 };
 
+//get all doctors ctrl
+const getAllDoctorsController = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find({ status: "approved" });
+    res.status(200).send({
+      success: true,
+      message: "Doctors List fetch successfully",
+      data: doctors,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "error fetching doctor",
+    });
+  }
+};
+
 module.exports = {
   registerController,
   loginController,
@@ -176,4 +195,5 @@ module.exports = {
   applyDoctorController,
   getAllNotificationController,
   DeleteAllNotificationController,
+  getAllDoctorsController,
 };

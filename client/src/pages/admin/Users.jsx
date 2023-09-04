@@ -50,7 +50,7 @@ const Users = () => {
       title: 'Actions',
       dataIndex: 'actions',
       render: (text, records) => (
-        <div className='flex'><button>Block</button></div>
+        <div className='flex bg-slate-600 px-1 text-white'><button>Block</button></div>
       )
 
     }
