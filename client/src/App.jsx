@@ -12,6 +12,8 @@ import Users from "./pages/admin/Users";
 import Doctors from "./pages/admin/Doctors";
 import Profile from "./pages/doctor/profile";
 import BookingPage from "./pages/BookingPage";
+import Appointments from "./pages/Appointments";
+import DoctorAppointments from "./pages/doctor/DoctorAppointments";
 
 
 function App() {
@@ -21,18 +23,12 @@ function App() {
     <>
       {loading && <Spinner />}
       <Routes>
-        <Route path="/register" element={<LoginRoute>
-          <Register /> </LoginRoute>} />
-        <Route path="/login" element={<LoginRoute>
-          <Login />  </LoginRoute>} />
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
-          }
-        />
+
+
+
+
+
+
 
         <Route
           path="/apply-doctor"
@@ -87,6 +83,29 @@ function App() {
           element={
             <ProtectedRoute>
               <NotificationPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/login" element={<LoginRoute>
+          <Login />  </LoginRoute>} />
+
+        <Route path="/register" element={<LoginRoute>
+          <Register /> </LoginRoute>} />
+
+
+        <Route path="/appointments" element={<ProtectedRoute>
+          <Appointments />  </ProtectedRoute>} />
+
+        <Route path="doctor-appointments" element={<ProtectedRoute>
+          <DoctorAppointments />  </ProtectedRoute>} />
+
+
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <HomePage />
             </ProtectedRoute>
           }
         />

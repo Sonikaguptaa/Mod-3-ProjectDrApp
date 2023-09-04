@@ -8,7 +8,7 @@ import { setUser } from "../redux/features/userSlice"
 
 const Layout = ({ children }) => {
 
-  const { user } = useSelector(state => state.user)
+  const { user } = useSelector((state) => state.user)
   const location = useLocation();
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
     },
     {
       name: "Appoinments",
-      path: "/appointments",
+      path: "/doctor-appointments",
       icon: "fa-solid fa-list",
     },
     {
