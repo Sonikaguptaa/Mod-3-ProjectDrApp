@@ -13,7 +13,10 @@ import { showLoading, hideLoading } from '../../redux/features/alertSlice'
 const Profile = () => {
 
   const { user } = useSelector((state) => state.user)
-  const [doctor, setDoctors] = useState(null)
+  const [doctor, setDoctors] = useState({
+    firstName: '',
+    lastName: ''
+  })
   const params = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -76,14 +79,19 @@ const Profile = () => {
 
   return (
     <Layout>
-      <h1>Manage Profile</h1>
+
+
 
       {user && (
+        <>
 
-        <Form layout='vertical' onFinish={handleFinish} className='m-3' initialValues={doctor}>
-          <h4>Personel Details :</h4>
-          <Row gutter={20}>
-            <Col xs={24} md={24} lg={8}>
+          <h1>Manage Profile:  </h1>
+
+
+          <Form layout="vertical" onFinish={handleFinish} className="m-3" initialValues={doctor}>
+            <h4>Personel Details :</h4>
+            <Row gutter={20}>
+              {/* <Col xs={24} md={24} lg={8}>
               <Form.Item label="First Name"
                 name="firstName"
                 required
@@ -102,100 +110,101 @@ const Profile = () => {
                 <Input type="text" placeholder=" Enter Your Name" />
 
               </Form.Item>
-            </Col>
+            </Col> */}
 
-            <Col xs={24} md={24} lg={8}>
-              <Form.Item label="Phone No"
-                name="phone"
-                required
-                rules={[{ required: true }]}>
-
-
-                <Input type="text" placeholder=" Contact no" />
-
-              </Form.Item>
-            </Col>
+              <Col xs={24} md={24} lg={8}>
+                <Form.Item label="Phone No"
+                  name="phone"
+                  required
+                  rules={[{ required: true }]}>
 
 
-            <Col xs={24} md={24} lg={8}>
-              <Form.Item label="E-Mail"
-                name="email"
-                required
-                rules={[{ required: true }]}>
+                  <Input type="text" placeholder=" Contact no" />
 
-                <Input type="text" placeholder="  e-mail" />
-
-              </Form.Item>
-            </Col>
+                </Form.Item>
+              </Col>
 
 
-            <Col xs={24} md={24} lg={8}>
-              <Form.Item label="WebSite"
-                name="website"
-              >
+              <Col xs={24} md={24} lg={8}>
+                <Form.Item label="E-Mail"
+                  name="email"
+                  required
+                  rules={[{ required: true }]}>
 
-                <Input type="text" placeholder=" WebSite " />
+                  <Input type="text" placeholder="  e-mail" />
 
-              </Form.Item>
-            </Col>
-            <Col xs={24} md={24} lg={8}>
-              <Form.Item label="Address"
-                name="address"
-                required
-                rules={[{ required: true }]}>
-
-                <Input type="text" placeholder="Address" />
-
-              </Form.Item>
-            </Col>
+                </Form.Item>
+              </Col>
 
 
+              <Col xs={24} md={24} lg={8}>
+                <Form.Item label="WebSite"
+                  name="website"
+                >
 
-          </Row>
+                  <Input type="text" placeholder=" WebSite " />
 
-          <h4>Professional Details :</h4>
+                </Form.Item>
+              </Col>
+              <Col xs={24} md={24} lg={8}>
+                <Form.Item label="Address"
+                  name="address"
+                  required
+                  rules={[{ required: true }]}>
+
+                  <Input type="text" placeholder="Address" />
+
+                </Form.Item>
+              </Col>
 
 
-          <Row gutter={20}>
-            <Col xs={24} md={24} lg={8}>
-              <Form.Item label="Specialization"
-                name="specialization"
-                required
-                rules={[{ required: true }]}>
-                <Input type="text" placeholder=" specialization" />
 
-              </Form.Item>
-            </Col>
+            </Row>
+
+            <h4>Professional Details :</h4>
 
 
-            <Col xs={24} md={24} lg={8}>
-              <Form.Item label="Experience"
-                name="experience"
-                required
-                rules={[{ required: true }]}>
-                <Input type="text" placeholder="experience" />
+            <Row gutter={20}>
+              <Col xs={24} md={24} lg={8}>
+                <Form.Item label="Specialization"
+                  name="specialization"
+                  required
+                  rules={[{ required: true }]}>
+                  <Input type="text" placeholder=" specialization" />
 
-              </Form.Item>
-            </Col>
+                </Form.Item>
+              </Col>
 
-            <Col xs={24} md={24} lg={8}>
+
+              <Col xs={24} md={24} lg={8}>
+                <Form.Item label="Experience"
+                  name="experience"
+                  required
+                  rules={[{ required: true }]}>
+                  <Input type="text" placeholder="experience" />
+
+                </Form.Item>
+              </Col>
+
+              {/* <Col xs={24} md={24} lg={8}>
               <Form.Item label="Timing"
                 name="timings"
                 required>
                 <TimePicker.RangePicker format="HH:mm" />
 
-              </Form.Item>
-            </Col>
-            <Col xs={24} md={24} lg={8}></Col>
-            <Col className='flex justify-end' xs={24} md={24} lg={8}>
-              <button className="bg-blue-500 text-white w-20 p-1 rounded hover:bg-blue-600 ">Submit</button>
+              </Form.Item> */}
+              {/* </Col> */}
+              <Col xs={24} md={24} lg={8}></Col>
+              <Col className='flex justify-end' xs={24} md={24} lg={8}>
+                <button className="bg-blue-500 text-white w-20 p-1 rounded hover:bg-blue-600 ">Update</button>
 
 
-            </Col>
+              </Col>
 
-          </Row>
+            </Row>
 
-        </Form>
+          </Form>
+        </>
       )}
 
     </Layout>
