@@ -14,6 +14,7 @@ const DoctorAppointments = () => {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
+      console.log(res)
 
       if (res.data.success) {
         setAppointments(res.data.data);
@@ -58,8 +59,8 @@ const DoctorAppointments = () => {
       dataIndex: 'date',
       render: (text, record) => (
         <span>
-          {moment(record.date).format('DD-MM-YYYY')} &nbsp;
-          {moment(record.time).format('HH:mm')}
+          {moment(record.date).format('MM-DD-YYYY')} &nbsp;
+          {moment(record.time).format('HH:mm').toString}
         </span>
       ),
     },
@@ -68,18 +69,18 @@ const DoctorAppointments = () => {
       dataIndex: 'status',
     },
     {
-      title: 'Actions',
-      dataIndex: 'actions',
-      render: (text, record) => (
-        <div className="flex">
-          {record.status === 'pending' && (
-            <div className="flex">
-              <button onClick={() => handleStatus(record, 'approved')}>Approved</button>
-              <button onClick={() => handleStatus(record, 'reject')}>Reject</button>
-            </div>
-          )}
-        </div>
-      ),
+      // title: 'Actions',
+      // dataIndex: 'actions',
+      // render: (text, record) => (
+      //   <div className="flex">
+      //    {record.status === 'pending' && (
+      //       <div classNam e="flex">
+      //         <button onClick={() => handleStatus(record, 'approved')}>Approved</button>
+      //         <button onClick={() => handleStatus(record, 'reject')}>Reject</button>
+      //       </div>
+      //     )}
+      //   </div>
+      // ),
     },
   ];
 

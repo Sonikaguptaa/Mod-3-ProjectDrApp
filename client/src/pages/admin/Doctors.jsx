@@ -56,6 +56,7 @@ const Doctors = () => {
         <span>{record.firstName} {record.lastName}</span>
       ),
     },
+
     {
       title: 'Status',
       dataIndex: 'status',

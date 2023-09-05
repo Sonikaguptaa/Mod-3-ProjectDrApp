@@ -134,7 +134,7 @@ const BookingPage = () => {
                 format="DD-MM-YYYY"
                 onChange={(value) => {
                   setIsAvailable(false)
-                  setDate(moment(value).format("DD-MM-YYYY"));
+                  setDate(moment(value).format("MM-DD-YYYY"));
                 }}
               />
               <TimePicker

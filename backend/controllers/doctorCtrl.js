@@ -63,8 +63,11 @@ const getDoctorByIdController = async (req, res) => {
 const doctorAppointmentsController = async (req, res) => {
   try {
     const doctor = await doctorModel.findOne({ userId: req.body.userId });
+    // console.log(doctor);
+    // console.log(req.userId);
+    // console.log(req.body);
     const appointments = await appointmentModel.find({
-      doctorId: doctor,
+      doctorId: doctor._id,
     });
     res.status(200).send({
       success: true,
@@ -85,8 +88,8 @@ const updateStatusController = async (req, res) => {
   try {
     const { appointmentId, status } = req.body;
     const appointment = await appointmentModel.findByIdAndUpdate(
-      appointmentId,
-      { status }
+      appointmentId
+      // { status }
     );
     const user = await userModel.findOne({ _id: appointment.userId });
     const notification = user.notification;

@@ -11,6 +11,10 @@ const doctorSchema = new mongoose.Schema(
       type: String,
       required: [true, "last name is required"],
     },
+    userId: {
+      type: String,
+      required: true,
+    },
 
     phone: {
       type: String,
@@ -43,7 +47,7 @@ const doctorSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      default: "pending",
+      // default: "pending",
     },
 
     timings: {
