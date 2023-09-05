@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { adminMenu, userMenu } from "../data/data";
+import { userMenu, adminMenu } from "../data/data"
 import { useSelector } from "react-redux";
 import { message, Badge } from "antd";
 import { useDispatch } from "react-redux";
