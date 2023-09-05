@@ -36,7 +36,7 @@ const HomePage = () => {
     <Layout>
       <div>
         <div className="flex items-center justify-center">
-          <img src="public\images\DrSign1.png" alt="Doctor's Image" className="mx-auto w-1/4" />
+          <img src="\images\DrSign1.png" alt="Doctor's Image" className="mx-auto w-1/4" />
           <div className="text-center ml-4">
             <h1 className="text-3xl font-bold">Health First</h1>
             <p>
