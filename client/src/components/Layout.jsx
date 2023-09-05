@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { userMenu, adminMenu } from "../data/data"
+
 import { useSelector } from "react-redux";
 import { message, Badge } from "antd";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/userSlice";
+import { userMenu, adminMenu } from "./../data/data"
 
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
