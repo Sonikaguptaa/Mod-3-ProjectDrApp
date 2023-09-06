@@ -69,8 +69,10 @@ const Appointments = () => {
 
   return (
     <Layout>
-
-      <h1>Appoinments List</h1>
+      <div className="flex items-center ">
+        <img className="w-16 h-16" src="\images\drSign.jpg" alt="doclogo" />
+        <h1 className="ml-2 font-bold">Appointments List</h1>
+      </div>
       <Table columns={columns} dataSource={appointments} />
 
     </Layout>

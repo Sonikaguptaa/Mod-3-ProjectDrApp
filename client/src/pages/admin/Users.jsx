@@ -58,7 +58,12 @@ const Users = () => {
   ]
   return (
     <Layout>
-      <h1>Users List</h1>
+
+      <div className="flex items-center ">
+        <img className="w-16 h-16" src="\images\ul.png" alt="doclogo" />
+        <h1 className="ml-2 font-bold"> User List </h1>
+      </div>
+
       <Table columns={colums} dataSource={users} />
     </Layout>
   )

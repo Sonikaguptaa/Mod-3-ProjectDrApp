@@ -85,7 +85,12 @@ const Profile = () => {
       {user && (
         <>
 
-          <h1>Manage Profile:  </h1>
+          <div className="flex items-center ">
+            <img className="w-16 h-16" src="\images\pl.png" alt="doclogo" />
+            <h1 className="ml-2 font-bold"> Manage Profile </h1>
+          </div>
+
+
 
 
           <Form layout="vertical" onFinish={handleFinish} className="m-3" initialValues={doctor}>

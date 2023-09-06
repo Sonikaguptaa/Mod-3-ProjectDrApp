@@ -60,14 +60,14 @@ const DoctorAppointments = () => {
       render: (text, record) => (
         <span>
           {moment(record.date).format('MM-DD-YYYY')} &nbsp;
-          {moment(record.time).format('HH:mm').toString}
+          {moment(record.time).format('HH:mm').toString()}
         </span>
       ),
     },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-    },
+    // {
+    //   title: 'Status',
+    //   dataIndex: 'status',
+    // },
     {
       // title: 'Actions',
       // dataIndex: 'actions',
@@ -86,7 +86,12 @@ const DoctorAppointments = () => {
 
   return (
     <Layout>
-      <h1>Doctor Appointments</h1>
+
+      <div className="flex items-center ">
+        <img className="w-16 h-16" src="\images\logo1.jpg" alt="doclogo" />
+        <h1 className="ml-2 font-bold"> Scheduled Appointments </h1>
+      </div>
+
       <Table columns={columns} dataSource={appointments} />
     </Layout>
   );

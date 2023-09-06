@@ -88,7 +88,12 @@ const Doctors = () => {
 
   return (
     <Layout>
-      <h1>Doctors List</h1>
+
+
+      <div className="flex items-center ">
+        <img className="w-16 h-16" src="\images\drl1.png" alt="doclogo" />
+        <h1 className="ml-2 font-bold"> Doctor List </h1>
+      </div>
       <Table columns={columns} dataSource={doctors} />
     </Layout>
   )
