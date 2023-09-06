@@ -47,6 +47,6 @@ https://trello.com/invite/b/n2bjHfik/ATTI70fafa161c872c2f9978f078c8eb2a333AE3CE5
 
 ![Image 2](/client/public/images/MernDRAPP-2.png)
 
-![Image 3](/client\public\images/DR-3.png)
+![Image 3](/client/public/images/DR-3.png)
 
-![Image 4](/client\public\images/DR-4.png)
+![Image 4](/client/public/images/DR-4.png)
