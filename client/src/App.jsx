@@ -17,6 +17,10 @@ import DoctorAppointments from "./pages/doctor/DoctorAppointments";
 
 
 function App() {
+
+
+
+
   const { loading } = useSelector((state) => state.alerts);
 
   return (
@@ -110,8 +114,11 @@ function App() {
           }
         />
 
-
       </Routes>
+      {/* <userMenu />
+      <adminMenu /> */}
+
+
     </>
   );
 }

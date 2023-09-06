@@ -73,7 +73,11 @@ const Appointments = () => {
         <img className="w-16 h-16" src="\images\drSign.jpg" alt="doclogo" />
         <h1 className="ml-2 font-bold">Appointments List</h1>
       </div>
-      <Table columns={columns} dataSource={appointments} />
+      <Table columns={columns} dataSource={appointments.map(appointment => ({
+
+        ...appointment,
+        key: appointment.id,
+      }))} />
 
     </Layout>
   )
