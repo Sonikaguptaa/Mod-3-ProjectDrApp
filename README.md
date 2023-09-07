@@ -37,9 +37,11 @@ Inspired by similar projects and tutorials in the MERN stack community.
 
 ### Project Planning
 
+**BackEnd Deploy**
 https://blog-backend-hxyy.onrender.com
 
-https://client-bk0y.onrender.com
+**FrontEnd Deploy**
+https://frontend-client-9jrc.onrender.com
 
 https://trello.com/invite/b/n2bjHfik/ATTI70fafa161c872c2f9978f078c8eb2a333AE3CE58/mern-full-stack-dr-appointment-app
 
